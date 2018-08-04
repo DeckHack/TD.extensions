@@ -1,0 +1,26 @@
+{
+  "name": "td.extensions",
+  "version": "0.0.1",
+  "description": "Core handling and specification for extensions inside TweetDeck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeckHack/TD.extensions.git"
+  },
+  "keywords": [
+    "tweetdeck",
+    "twitter",
+    "extensions",
+    "specification",
+    "modules"
+  ],
+  "author": "Andreas Nedbal <andy@pixelde.su>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/DeckHack/TD.extensions/issues"
+  },
+  "homepage": "https://github.com/DeckHack/TD.extensions#readme"
+}
