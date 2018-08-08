@@ -104,7 +104,7 @@ TD.extensions.enable = (extensionName, init) => {
   let enabledExtensions = TD.extensions.getAllEnabled()
   let extension = TD.extensions.getExtension(extensionName)
 
-  if (!enabledExtensions.includes(extensionName) &&
+  if (!TD.extensions.isEnabled(extension.name) &&
       TD.extensions.checkDependencies(extension.name) &&
       TD.extensions.checkConflicts(extension.name)) {
     enabledExtensions.push(extensionName)
@@ -115,7 +115,7 @@ TD.extensions.enable = (extensionName, init) => {
   }
 
   if (init) {
-    TD.extensions.initializeExtension(extensionName)
+    TD.extensions.initializeExtension(extension.name)
   }
 }
 
