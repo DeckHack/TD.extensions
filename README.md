@@ -1,9 +1,21 @@
-# TD.extensions
+<div align='center'>
 
-**Status:** _Initial Release_
+  <a href='https://github.com/tdemapp/tdem/releases'>
+    <img alt='TweetDeck Extension Manager' width='256px' src='https://raw.githubusercontent.com/tdemapp/assets/master/icon-1024.png' />
+  </a>
 
-## What is this about?
+  <h1> API </h1>
+  <p> Specification and core handling service for pluggable extensions inside TweetDeck </p>
 
+  [![License](https://img.shields.io/badge/license-agpl-blue.svg?longCache=true&style=for-the-badge)](https://github.com/tdemapp/api/blob/master/LICENSE) 
+  [![Travis](https://img.shields.io/travis/tdemapp/api/master.svg?style=for-the-badge)](https://travis-ci.org/tdemapp/api) 
+  [![Prettier](https://img.shields.io/badge/code--style-%20prettier-c596c7.svg?longCache=true&style=for-the-badge)](https://prettier.io/) 
+  [![gitmoji](https://img.shields.io/badge/gitmoji-%20%F0%9F%98%9C%20%F0%9F%98%8D-FFDD67.svg?longCache=true&style=for-the-badge)](https://gitmoji.carloscuesta.me/) 
+
+  <br />
+</div>
+
+## ❓ What is this about?
 `TD.extensions` is a project based on the idea to unite browser extension and userscript developers working with
 the TweetDeck web application.
 
@@ -13,10 +25,9 @@ like sorting the extensions after their dependencies and check if any conflicts 
 This repository contains both the specification (in `docs/SPECIFICATION.md`) and the initial/main implementation of
 the core handling service for extensions (in `index.js`)
 
-## Contributing
+## 🛠 Contributing
 
 ### Specification
-
 If you want to change something about the specification, please proceed to [open an issue](https://github.com/DeckHack/TD.extensions/issues/new)
 explaining your wanted changes and being open for discussion there.
 
@@ -24,15 +35,13 @@ Once a uniform agreement across discussion participants has been made, a change 
 code changes to the core service should also follow up as soon as possible.
 
 ### Core Service
-
 If you want to change something about the code of the core service, feel free to open a Pull Request with your proposed changes. 
 A project maintainer will look at them and leave feedback. Once everything has been resolved, the changes are most likely to be
 merged.
 
-### Discussion
-
-If you want to partake in the discussion around `TD.extensions` and the TweetDeck userscript/extension ecosystem in general, feel
-free to join our [Discord server](https://discord.gg/s6Fujxh)!
+## ❤️ Thank You!
+This API is a fork and was orginally developed by ![Andreas N](https://github.com/pixeldesu).  
+HUGE thank you to him for his work in making this API to allow TDEM to even exist 🙌🏻.
 
 ## License
 

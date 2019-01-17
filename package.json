@@ -2,27 +2,26 @@
   "name": "td.extensions",
   "version": "1.0.0",
   "description": "Core handling and specification for extensions inside TweetDeck",
-  "main": "index.js",
+  "author": "N U R O ™ <me@nuro.sh>",
+  "license": "AGPL-3.0",
+  "homepage": "https://github.com/tdemapp/api#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DeckHack/TD.extensions.git"
+    "url": "git+https://github.com/tdemapp/api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tdemapp/api/issues"
   },
   "keywords": [
-    "tweetdeck",
     "twitter",
+    "tweetdeck",
     "extensions",
     "specification",
     "modules"
   ],
-  "author": "Andreas Nedbal <andy@pixelde.su>",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/DeckHack/TD.extensions/issues"
-  },
-  "homepage": "https://github.com/DeckHack/TD.extensions#readme",
   "devDependencies": {
     "eslint": "^5.3.0",
     "eslint-config-standard": "^11.0.0",
