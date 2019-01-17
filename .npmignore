@@ -1,0 +1,5 @@
+lib/
+docs/
+.prettierignore
+.prettierrc.json
+tsconfig.json
