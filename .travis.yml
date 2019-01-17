@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - v11
+  - v10
+  - v9
+  - v8
+before_script:
+  - npm run build
+script:
+  - npm run test
