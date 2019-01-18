@@ -5,9 +5,10 @@
   "author": "N U R O ™ <me@nuro.sh>",
   "license": "AGPL-3.0",
   "homepage": "https://github.com/tdemapp/api#readme",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "lint": "prettier --config .prettierrc.json --write \"./**/*.{ts,js}\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --config .prettierrc.json --write \"./**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,6 @@
     "modules"
   ],
   "devDependencies": {
-    "prettier": "^1.15.3",
-    "eslint-config-standard": "^11.0.0",
+    "prettier": "^1.15.3"
   }
 }
