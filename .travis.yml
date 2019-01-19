@@ -4,7 +4,9 @@ node_js:
   - v10
   - v9
   - v8
-before_script:
-  - npm run build
+cache:
+  directories:
+    -node_modules
 script:
+  - npm run build
   - npm run test
