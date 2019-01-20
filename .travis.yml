@@ -4,6 +4,11 @@ node_js:
   - v10
   - v9
   - v8
+cache:
+  directories:
+    -node_modules
+before_install:
+  - npm install -g typescript
 install:
   - npm install
 script:
