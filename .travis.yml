@@ -4,7 +4,8 @@ node_js:
   - v10
   - v9
   - v8
-before_script:
-  - npm run build
+install:
+  - npm install
 script:
+  - npm run build
   - npm run test
