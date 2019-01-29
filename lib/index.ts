@@ -12,8 +12,8 @@ interface Extension {
 }
 
 interface Extensions {
-	list: [];
-	init: [];
+	list: Array<Extension>;
+	init: Array<Extension>;
 }
 
 export default class TDE {
@@ -150,7 +150,7 @@ export default class TDE {
 
 			window.localStorage.setItem('this.enabled', JSON.stringify(enabledExtensions));
 
-			enabledExtensions.forEach((enabledExtension) => {
+			enabledExtensions.forEach((enabledExtension: string) => {
 				this.checkDependencies(enabledExtension);
 			});
 		}
@@ -166,7 +166,7 @@ export default class TDE {
 	public init(): void {
 		const enabledExtensions = this.getAllEnabled();
 
-		enabledExtensions.forEach((extension) => {
+		enabledExtensions.forEach((extension: string) => {
 			this.initializeExtension(extension);
 		});
 	}
@@ -237,10 +237,10 @@ export default class TDE {
 	 * @returns {array} sorted array of extension names
 	 */
 	public resolveDependencyGraph() {
-		const sorted: Array<String> = [];
-		const visited: Object = {};
+		const sorted: Array<string> = [];
+		const visited: Array<string> = [];
 
-		this.extensions.list.forEach(function visit(extension: Extension, ancestors) {
+		this.extensions.list.forEach(function visit(extension: Extension, ancestors: Array<string>) {
 			if (!Array.isArray(ancestors)) {
 				ancestors = [];
 			}
@@ -288,7 +288,7 @@ export default class TDE {
 
 		if (!this.isInitialized(extensionName)) {
 			extension.create();
-			this.init.push(extensionName);
+			this.extensions.push(extensionName);
 		}
 	}
 
@@ -303,7 +303,7 @@ export default class TDE {
 			const extensionIndex = this.init.indexOf(extensionName);
 			extension.destroy();
 
-			this.init.splice(extensionIndex, 1);
+			this.extensions.init.splice(extensionIndex, 1);
 		}
 	}
 
@@ -320,7 +320,7 @@ export default class TDE {
 	 * Reorders the enabled extension list using the resolved dependency graph
 	 * @returns the ordered list of enabled extensions
 	 */
-	public reorderEnabledExtensions(enabledExtensions) {
+	public reorderEnabledExtensions(enabledExtensions: Array<string>) {
 		const extensionOrder = this.resolveDependencyGraph();
 
 		return extensionOrder.filter((extension) => enabledExtensions.includes(extension));
