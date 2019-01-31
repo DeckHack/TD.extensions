@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require ts-node/register test/**/*.ts",
     "lint": "prettier --config .prettierrc.json --write \"./**/*.js\""
   },
   "repository": {
@@ -28,7 +28,13 @@
     "modules"
   ],
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chrome": "^0.0.78",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
     "prettier": "^1.15.3",
+    "ts-node": "^8.0.2",
     "typescript": "^3.2.4"
   }
 }
