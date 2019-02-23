@@ -29,12 +29,12 @@
   ],
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/chrome": "^0.0.78",
-    "@types/mocha": "^5.2.5",
+    "@types/chrome": "^0.0.81",
+    "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "prettier": "^1.15.3",
+    "mocha": "^6.0.1",
+    "prettier": "^1.16.4",
     "ts-node": "^8.0.2",
-    "typescript": "^3.2.4"
+    "typescript": "^3.3.3333"
   }
 }
