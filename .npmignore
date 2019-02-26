@@ -1,0 +1,7 @@
+lib/
+docs/
+.npmignore
+.prettierignore
+.prettierrc.json
+.travis.yml
+tsconfig.json
