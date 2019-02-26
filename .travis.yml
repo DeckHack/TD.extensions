@@ -4,5 +4,13 @@ node_js:
   - v10
   - v9
   - v8
-before_script:
+cache:
+  directories:
+    -node_modules
+before_install:
+  - npm install -g typescript
+install:
+  - npm install
+script:
   - npm run build
+  - npm run test
