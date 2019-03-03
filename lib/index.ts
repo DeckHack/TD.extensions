@@ -1,6 +1,6 @@
 'use strict';
 
-interface Extension {
+export interface Extension {
 	name: string;
 	author: string;
 	description: string;
