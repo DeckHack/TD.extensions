@@ -71,6 +71,8 @@ export default class TDE {
 	}
 
 	/**
+	 * TODO: Set function return type
+	 * TODO: Convert to use `get` syntax
 	 * Returns the names of all extensions in the `extensions` list
 	 *
 	 * @returns {array}
@@ -80,10 +82,13 @@ export default class TDE {
 	}
 
 	/**
+	 * TODO: Set function return type
+	 * TODO: Convert to use `get` syntax
 	 * Returns the names of all extensions currently enabled from localStorage
 	 * @returns {array}
 	 */
 	public getAllEnabled() {
+		// TODO: Fix `window.localStorage` error
 		const enabled = JSON.parse(window.localStorage.getItem('this.enabled'));
 
 		if (enabled === null) {
@@ -96,6 +101,7 @@ export default class TDE {
 	}
 
 	/**
+	 * TODO: Convert to use `get` syntax
 	 * Returns the names of all extensions currently initialized
 	 * @returns {array}
 	 */
@@ -240,6 +246,7 @@ export default class TDE {
 		const sorted: Array<string> = [];
 		const visited: Array<string> = [];
 
+		// TODO: Set function return type
 		this.extensions.list.forEach(function visit(extension: Extension, ancestors: Array<string>) {
 			if (!Array.isArray(ancestors)) {
 				ancestors = [];
@@ -317,6 +324,7 @@ export default class TDE {
 	}
 
 	/**
+	 * TODO: Set function return type
 	 * Reorders the enabled extension list using the resolved dependency graph
 	 * @returns the ordered list of enabled extensions
 	 */
