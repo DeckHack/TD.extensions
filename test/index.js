@@ -1,5 +1,5 @@
-import { expect } from 'chai';
-import TDE from '../lib';
+const { expect } = require('chai');
+const TDE = require('../dist');
 
 describe('TDE', () => {
 	it('Initialize TDE', () => {
