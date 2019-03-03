@@ -1,6 +1,6 @@
 {
-  "name": "td.extensions",
-  "version": "1.0.0",
+  "name": "tde",
+  "version": "1.1.1",
   "description": "Core handling and specification for extensions inside TweetDeck",
   "author": "N U R O ™ <me@nuro.sh>",
   "license": "AGPL-3.0",
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha --require ts-node/register test/**/*.ts",
+    "test": "mocha --require ts-node/register test/index.js",
     "lint": "prettier --config .prettierrc.json --write \"./**/*.js\""
   },
   "repository": {
