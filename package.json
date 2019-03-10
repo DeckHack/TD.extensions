@@ -5,9 +5,9 @@
   "author": "N U R O ™ <me@nuro.sh>",
   "license": "AGPL-3.0",
   "homepage": "https://github.com/tdemapp/api#readme",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha test/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --config .prettierrc.json --write \"./**/*.js\""
   },
   "repository": {

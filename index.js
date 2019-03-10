@@ -1,37 +1,22 @@
-'use strict';
+"use strict";
 
-export interface Extension {
-	name: string;
-	author: string;
-	description: string;
-	website: string;
-	dependencies: [];
-	conflicts: [];
-	create: () => {};
-	destroy: () => {};
-}
+/* global TD */
+var TD = {};
+TD.extensions = {};
+TD.extensions._list = [];
+TD.extensions._init = [];
 
-interface Extensions {
-	list: Array<Extension>;
-	init: Array<Extension>;
-}
-
-export default class TDE {
-	private extensions: Extensions;
-
-	constructor(extensions: Extensions) {
-		this.extensions = extensions;
-	}
-
+export default {
 	/**
-	 * Adds an extension to the `extensions` list
+	 * Adds an extension to the global extension list
+	 *
 	 * @param {object} extension TD.extension object
 	 * @param {boolean} enable enable extension right after addition
 	 * @param {boolean} init initialize extension right after addition
 	 */
-	public add(extension: Extension, enable: boolean, init: boolean): void {
+	add:(extension, enable, init) => {
 		if (this.getExtension(extension.name) === undefined) {
-			this.extensions.list.push(extension);
+			TD.extensions._list.push(extension);
 
 			try {
 				this.reorderExtensions();
@@ -43,71 +28,68 @@ export default class TDE {
 				this.enable(extension.name, init);
 			}
 		}
-	}
+	},
 
 	/**
-	 * Removes an extension from the `extensions` list
+	 * Removes an extension from the global extension list
 	 * Also disables and destroys it in the progress (if not already done)
+	 *
 	 * @param {string} extensionName name of the extension to be removed
 	 */
-	public remove(extensionName: string): void {
-		const extension = this.getExtension(extensionName);
-		const extensionIndex = this.extensions.list.indexOf(extension);
+	remove: (extensionName) => {
+		let extension = this.getExtension(extensionName);
+		let extensionIndex = TD.extensions._list.indexOf(extension);
 
 		this.disable(extensionName);
 
-		this.extensions.list.splice(extensionIndex, 1);
+		TD.extensions._list.splice(extensionIndex, 1);
 
 		this.reorderExtensions();
-	}
+	},
 
 	/**
 	 * Get an extension object returned by name
+	 *
 	 * @param {string} extensionName name of the extension to get
-	 * @returns {Extension}
 	 */
-	public getExtension(extensionName: string): Extension {
-		return this.extensions.list.filter((extension) => extension.name === extensionName)[0];
-	}
+	getExtension: (extensionName) => {
+		return TD.extensions._list.filter((extension) => extension.name === extensionName)[0];
+	},
 
 	/**
-	 * TODO: Set function return type
-	 * TODO: Convert to use `get` syntax
-	 * Returns the names of all extensions in the `extensions` list
+	 * Returns the names of all extensions in the global extension list
 	 *
 	 * @returns {array}
 	 */
-	public getAll() {
-		return this.extensions.list.map((extension) => extension.name);
-	}
+	getAll: () => {
+		return TD.extensions._list.map((extension) => extension.name);
+	},
 
 	/**
-	 * TODO: Set function return type
-	 * TODO: Convert to use `get` syntax
 	 * Returns the names of all extensions currently enabled from localStorage
+	 *
 	 * @returns {array}
 	 */
-	public getAllEnabled() {
-		// TODO: Fix `window.localStorage` error
-		const enabled = JSON.parse(window.localStorage.getItem('this.enabled'));
+	getAllEnabled: () => {
+		let enabled = JSON.parse(window.localStorage.getItem('TD.extensions.enabled'));
 
 		if (enabled === null) {
-			window.localStorage.setItem('this.enabled', JSON.stringify([]));
+			window.localStorage.setItem('TD.extensions.enabled', JSON.stringify([]));
 
 			return [];
 		} else {
 			return enabled;
 		}
-	}
+	},
 
 	/**
-	 * TODO: Convert to use `get` syntax
 	 * Returns the names of all extensions currently initialized
+	 *
 	 * @returns {array}
 	 */
-	public getAllInitialized() {
-		return this.init;
-	}
+	getAllInitialized: () => {
+		return TD.extensions._init;
+	},
 
 	/**
 	 * Enables an extension, so it will be run the next time .init() is executed
@@ -117,12 +99,13 @@ export default class TDE {
 	 * - it isn't already enabled
 	 * - the dependencies it requires are already enabled
 	 * - it has no conflicts with currently enabled extensions
+	 *
 	 * @param {string} extensionName name of the extension to be enabled
 	 * @param {boolean} init initialize the extension right after enabling
 	 */
-	public enable(extensionName: string, init: boolean): void {
+	enable: (extensionName, init) => {
 		let enabledExtensions = this.getAllEnabled();
-		const extension: Extension = this.getExtension(extensionName);
+		let extension = this.getExtension(extensionName);
 
 		if (
 			!this.isEnabled(extension.name) &&
@@ -133,30 +116,31 @@ export default class TDE {
 
 			enabledExtensions = this.reorderEnabledExtensions(enabledExtensions);
 
-			window.localStorage.setItem('this.enabled', JSON.stringify(enabledExtensions));
+			window.localStorage.setItem('TD.extensions.enabled', JSON.stringify(enabledExtensions));
 		}
 
 		if (init) {
 			this.initializeExtension(extension.name);
 		}
-	}
+	},
 
 	/**
 	 * Disables an extension and all extensions that depend on it
+	 *
 	 * @param {string} extensionName name of the extension to be disabled
 	 */
-	public disable(extensionName: string): void {
+	disable: (extensionName) => {
 		let enabledExtensions = this.getAllEnabled();
 
 		if (this.isEnabled(extensionName)) {
-			const extensionIndex = enabledExtensions.indexOf(extensionName);
+			let extensionIndex = enabledExtensions.indexOf(extensionName);
 			enabledExtensions.splice(extensionIndex, 1);
 
 			enabledExtensions = this.reorderEnabledExtensions(enabledExtensions);
 
-			window.localStorage.setItem('this.enabled', JSON.stringify(enabledExtensions));
+			window.localStorage.setItem('TD.extensions.enabled', JSON.stringify(enabledExtensions));
 
-			enabledExtensions.forEach((enabledExtension: string) => {
+			enabledExtensions.forEach((enabledExtension) => {
 				this.checkDependencies(enabledExtension);
 			});
 		}
@@ -164,34 +148,36 @@ export default class TDE {
 		if (this.isInitialized(extensionName)) {
 			this.destroyExtension(extensionName);
 		}
-	}
+	},
 
 	/**
 	 * Initialize all extensions
 	 */
-	public init(): void {
-		const enabledExtensions = this.getAllEnabled();
+	init: () => {
+		let enabledExtensions = this.getAllEnabled();
 
-		enabledExtensions.forEach((extension: string) => {
+		enabledExtensions.forEach((extension) => {
 			this.initializeExtension(extension);
 		});
-	}
+	},
 
 	/**
 	 * Checks the dependencies for a given extension
+	 *
 	 * @param {string} extensionName name of the extension to be checked
+	 *
 	 * @returns {boolean} true if dependencies could be resolved, false if any dependency is missing
 	 */
-	public checkDependencies(extensionName: string): boolean {
-		const extension: Extension = this.getExtension(extensionName);
+	checkDependencies: (extensionName) => {
+		let extension = this.getExtension(extensionName);
 
 		if (extension.dependencies === undefined) {
 			return true;
 		}
 
-		const extensionDependencyStatus = extension.dependencies.every((dependency) => {
-			this.isEnabled(dependency);
-		});
+		let extensionDependencyStatus = extension.dependencies.every((dependency) =>
+			this.isEnabled(dependency)
+		);
 
 		if (extensionDependencyStatus === false && this.isEnabled(extensionName)) {
 			this.disable(extensionName);
@@ -199,138 +185,136 @@ export default class TDE {
 		} else {
 			return extensionDependencyStatus;
 		}
-	}
+	},
 
 	/**
 	 * Checks the conflicts of a given extension
+	 *
 	 * @param {string} extensionName name of the extension to be checked
+	 *
 	 * @returns {boolean} true if no conflicts exist with enabled extensions, false if there are conflicts
 	 */
-	public checkConflicts(extensionName: string): boolean {
-		const extension: Extension = this.getExtension(extensionName);
+	checkConflicts: (extensionName) => {
+		let extension = this.getExtension(extensionName);
 
 		if (extension.conflicts === undefined) {
 			return true;
 		}
 
-		const extensionConflictStatus = extension.conflicts.some((conflict) =>
-			this.isEnabled(conflict)
-		);
+		let extensionConflictStatus = extension.conflicts.some((conflict) => this.isEnabled(conflict));
 
 		return !extensionConflictStatus;
-	}
+	},
 
 	/**
 	 * Check if given extension is enabled
+	 *
 	 * @param {string} extensionName name of the extension to be checked
+	 *
 	 * @returns {boolean} boolean value representing if an extension is enabled
 	 */
-	public isEnabled(extensionName: string): boolean {
+	isEnabled: (extensionName) => {
 		return this.getAllEnabled().includes(extensionName);
-	}
+	},
 
 	/**
 	 * Check if given extension is initialized
+	 *
 	 * @param {string} extensionName name of the extension to be checked
+	 *
 	 * @returns {boolean} boolean value representing if an extension is initialized
 	 */
-	public isInitialized(extensionName: string): boolean {
+	isInitialized: (extensionName) => {
 		return this.getAllInitialized().includes(extensionName);
-	}
+	},
 
 	/**
 	 * Resolves the extensions list dependency tree and returns a sorted list of extension names
+	 *
 	 * @returns {array} sorted array of extension names
 	 */
-	public resolveDependencyGraph() {
-		const sorted: Array<string> = [];
-		const visited: Array<string> = [];
+	resolveDependencyGraph: () => {
+		let sorted = [];
+		let visited = {};
 
-		// TODO: Set function return type
-		this.extensions.list.forEach(function visit(extension: Extension, ancestors: Array<string>) {
-			if (!Array.isArray(ancestors)) {
-				ancestors = [];
-			}
-			if (extension.name === undefined) {
-				return;
-			}
+		TD.extensions._list.forEach(function visit(extension, ancestors) {
+			if (!Array.isArray(ancestors)) ancestors = [];
+			if (extension.name === undefined) return;
 
 			ancestors.push(extension.name);
 			visited[extension.name] = true;
 
 			if (extension.dependencies) {
-				extension.dependencies.forEach(function(dependency) {
+				extension.dependencies.forEach(function (dependency) {
 					if (ancestors.indexOf(dependency) >= 0) {
 						throw new Error(
 							'Circular dependency "' +
-								dependency +
-								'" is required by "' +
-								extension.name +
-								'": ' +
-								ancestors.join(' -> ')
+							dependency +
+							'" is required by "' +
+							extension.name +
+							'": ' +
+							ancestors.join(' -> ')
 						);
 					}
 
-					if (visited[dependency]) {
-						return;
-					}
+					if (visited[dependency]) return;
 					visit(this.getExtension(dependency), ancestors.slice(0));
 				});
 			}
 
-			if (sorted.indexOf(extension.name) < 0) {
-				sorted.push(extension.name);
-			}
+			if (sorted.indexOf(extension.name) < 0) sorted.push(extension.name);
 		});
 
 		return sorted;
-	}
+	},
 
 	/**
 	 * Initializes the given extension
+	 *
 	 * @param {string} extensionName name of extension to be initialized
 	 */
-	public initializeExtension(extensionName: string): void {
-		const extension: Extension = this.getExtension(extensionName);
+	initializeExtension: (extensionName) => {
+		let extension = this.getExtension(extensionName);
 
 		if (!this.isInitialized(extensionName)) {
 			extension.create();
-			this.extensions.push(extensionName);
+			TD.extensions._init.push(extensionName);
 		}
-	}
+	},
 
 	/**
 	 * Destroys the given extension
+	 *
 	 * @param {string} extensionName name of extension to be destroyed
 	 */
-	public destroyExtension(extensionName: string): void {
-		const extension = this.getExtension(extensionName);
+	destroyExtension: (extensionName) => {
+		let extension = this.getExtension(extensionName);
 
 		if (this.isInitialized(extensionName)) {
-			const extensionIndex = this.init.indexOf(extensionName);
+			let extensionIndex = TD.extensions._init.indexOf(extensionName);
 			extension.destroy();
 
-			this.extensions.init.splice(extensionIndex, 1);
+			TD.extensions._init.splice(extensionIndex, 1);
 		}
-	}
+	},
 
 	/**
 	 * Reorders the extension list using the resolved dependency graph
 	 */
-	public reorderExtensions(): void {
-		const extensionOrder = this.resolveDependencyGraph();
+	reorderExtensions: () => {
+		let extensionOrder = this.resolveDependencyGraph();
 
-		this.extensions.list = extensionOrder.map((extension) => this.getExtension(extension));
-	}
+		TD.extensions._list = extensionOrder.map((extension) => this.getExtension(extension));
+	},
 
 	/**
-	 * TODO: Set function return type
 	 * Reorders the enabled extension list using the resolved dependency graph
+	 *
 	 * @returns the ordered list of enabled extensions
 	 */
-	public reorderEnabledExtensions(enabledExtensions: Array<string>) {
-		const extensionOrder = this.resolveDependencyGraph();
+	reorderEnabledExtensions: (enabledExtensions) => {
+		let extensionOrder = this.resolveDependencyGraph();
 
 		return extensionOrder.filter((extension) => enabledExtensions.includes(extension));
-	}
-}
+	},
+};
