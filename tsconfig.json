@@ -1,15 +1,19 @@
 {
-    "compilerOptions": {
-        "target": "es2018",
-        "module": "commonjs",
-        "declaration": true,
-        "outDir": "./dist",
-        "strict": true,
-        "noUnusedLocals": true,
-        "pretty": true,
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist/",
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "pretty": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
