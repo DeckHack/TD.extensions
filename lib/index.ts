@@ -307,7 +307,7 @@ export default class TDE {
 		const extension = this.getExtension(extensionName);
 
 		if (this.isInitialized(extensionName)) {
-			const extensionIndex = this.init.indexOf(extensionName);
+			const extensionIndex = this.extensions.init.indexOf(extensionName);
 			extension.destroy();
 
 			this.extensions.init.splice(extensionIndex, 1);
