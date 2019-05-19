@@ -276,7 +276,7 @@ TD.extensions = {
 		let extension = TD.extensions.getExtension(extensionName);
 
 		if (!TD.extensions.isInitialized(extensionName)) {
-			extension.create();
+			Object.create(extension);
 			TD.extensions._init.push(extensionName);
 		}
 	},
