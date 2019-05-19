@@ -15,6 +15,21 @@
   <br />
 </div>
 
+## ➕ Installation:
+```sh
+npm install tdemapp/api --save
+```
+
+## ✨ Usage:
+```javascript
+var tde = require('tde');
+console.log(tde.getAll());  // '[]'
+```
+```typescript
+import { getAll } from 'tde';
+console.log(getAll()); // '[]'
+```
+
 ## ❓ What is this about?
 `TD.extensions` is a project based on the idea to unite browser extension and userscript developers working with
 the TweetDeck web application.
@@ -25,7 +40,7 @@ like sorting the extensions after their dependencies and check if any conflicts 
 This repository contains both the specification (in `docs/SPECIFICATION.md`) and the initial/main implementation of
 the core handling service for extensions (in `index.js`)
 
-## 🛠 Contributing
+## 🛠 Contributing:
 
 ### Specification
 If you want to change something about the specification, please proceed to [open an issue](https://github.com/DeckHack/TD.extensions/issues/new)
@@ -43,6 +58,5 @@ merged.
 This API is a fork and was orginally developed by ![Andreas N](https://github.com/pixeldesu).  
 HUGE thank you to him for his work in making this API to allow TDEM to even exist 🙌🏻.
 
-## License
-
+## License:
 `TD.extensions` is licensed under the [GNU Affero General Public License 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html)
