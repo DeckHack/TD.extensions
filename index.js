@@ -276,7 +276,13 @@ TD.extensions = {
 		let extension = TD.extensions.getExtension(extensionName);
 
 		if (!TD.extensions.isInitialized(extensionName)) {
-			Object.create(extension);
+			try {
+				const create = eval('(' + extension.create + ')');
+				create();
+			} catch (err) {
+				console.error('Error evaluating create function | ', err);
+			}
+
 			TD.extensions._init.push(extensionName);
 		}
 	},
@@ -291,7 +297,13 @@ TD.extensions = {
 
 		if (TD.extensions.isInitialized(extensionName)) {
 			let extensionIndex = TD.extensions._init.indexOf(extensionName);
-			extension.destroy();
+			
+			try {
+				const destroy = eval('(' + extension.destroy + ')');
+				destroy();
+			} catch (err) {
+				console.error('Error evaluating destroy function | ', err);
+			}
 
 			TD.extensions._init.splice(extensionIndex, 1);
 		}
