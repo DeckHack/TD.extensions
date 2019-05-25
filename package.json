@@ -5,7 +5,7 @@
   "author": "N U R O ™ <me@nuro.sh>",
   "license": "AGPL-3.0",
   "homepage": "https://github.com/tdemapp/api#readme",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --config .prettierrc.json --write \"./**/*.js\""
