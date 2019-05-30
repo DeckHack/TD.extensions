@@ -1,7 +1,7 @@
 <div align='center'>
 
   <a href='https://github.com/tdemapp/tdem/releases'>
-    <img alt='TweetDeck Extension Manager' width='256px' src='https://raw.githubusercontent.com/tdemapp/assets/master/icon-1024.png' />
+    <img alt='TweetDeck Extension Manager' width='256px' src='https://raw.githubusercontent.com/tdemapp/assets/master/icons/Dark-1024.png' />
   </a>
 
   <h1> API </h1>
