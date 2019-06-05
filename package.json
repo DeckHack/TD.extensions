@@ -4,7 +4,7 @@
   "description": "Core handling and specification for extensions inside TweetDeck",
   "author": "N U R O ™ <me@nuro.sh>",
   "license": "AGPL-3.0",
-  "homepage": "https://github.com/tdemapp/api#readme",
+  "homepage": "https://github.com/tdemapp/interface#readme",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdemapp/api.git"
+    "url": "git+https://github.com/tdemapp/interface.git"
   },
   "bugs": {
-    "url": "https://github.com/tdemapp/api/issues"
+    "url": "https://github.com/tdemapp/interface/issues"
   },
   "keywords": [
     "twitter",
