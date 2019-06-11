@@ -14,16 +14,17 @@
 
 ## ➕ Installation:
 ```sh
-npm install tdemapp/interface --save
+npm install --save @tdemapp/interface
 ```
 
 ## ✨ Usage:
 ```javascript
-var tde = require('tde');
+var tde = require('@tdemapp/interface');
 console.log(tde.getAll());  // '[]'
 ```
-```typescript
-import { getAll } from 'tde';
+
+```javascript
+import { getAll } from '@tdemapp/interface';
 console.log(getAll()); // '[]'
 ```
 
