@@ -12,10 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdemapp/interface.git"
+    "url": "git://github.com/tdemapp/interface.git"
   },
   "bugs": {
     "url": "https://github.com/tdemapp/interface/issues"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   },
   "keywords": [
     "twitter",
