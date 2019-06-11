@@ -13,6 +13,7 @@
 </div>
 
 ## ➕ Installation:
+Add the GitHub registry: [Guide](https://help.github.com/en/articles/configuring-npm-for-use-with-github-package-registry#authenticating-to-github-package-registry)
 ```sh
 npm install --save @tdemapp/interface
 ```
