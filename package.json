@@ -1,7 +1,7 @@
 {
-  "name": "tde",
+  "name": "interface",
   "version": "1.1.1",
-  "description": "Core handling and specification for extensions inside TweetDeck",
+  "description": "Extension interface for TweetDeck",
   "author": "N U R O ™ <me@nuro.sh>",
   "license": "AGPL-3.0",
   "homepage": "https://github.com/tdemapp/interface#readme",
