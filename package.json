@@ -27,9 +27,6 @@
     "specification",
     "modules"
   ],
-  "dependencies": {
-    "@types/chrome": "^0.0.81"
-  },
   "devDependencies": {
     "prettier": "^1.16.4"
   }
