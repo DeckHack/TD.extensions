@@ -17,9 +17,6 @@
   "bugs": {
     "url": "https://github.com/tdemapp/interface/issues"
   },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
-  },
   "keywords": [
     "twitter",
     "tweetdeck",
