@@ -7,6 +7,9 @@
   "homepage": "https://github.com/tdemapp/interface#readme",
   "main": "lib/index.js",
   "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "now-build": "npm run docs:build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier --config .prettierrc.json --write \"./**/*.js\""
   },
@@ -25,6 +28,7 @@
     "modules"
   ],
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "vuepress": "^1.0.2"
   }
 }
